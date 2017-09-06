@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Base of Spades</title>
+    <link rel="stylesheet" type="text/css" href="mainstyle.css">
+    <script src="baseofspades.js" type="text/javascript"></script>
+    
+</head>
+ 
+<body onload="init()">
+     <div>
+        <h1 id="title">
+            <text x="0" y="34">Base of Spades</text>
+        </h1>
+        <br/>
+        <table id= "cardarea" width= "100%">
+            <tr>
+                <td id="playerhand" style="text-align: center" width="45%" height="600px">
+                    <img id="card1" class='card' height="200" src='Cards\AS.svg'>
+                    <img id="card2" class='card' height="200" src='Cards\AS.svg'>
+                    <img id="hitcard1" class='card' height="200">
+                    <img id="hitcard2" class='card' height="200">
+                    <img id="hitcard3" class='card' height="200">
+                    <img id="hitcard4" class='card' height="200">
+                    <img id="hitcard5" class='card' height="200">
+                    <img id="hitcard6" class='card' height="200">
+                    <img id="hitcard7" class='card' height="200">
+                    <img id="hitcard8" class='card' height="200">
+                </td>
+                <td width="10%"></td>
+                <td style="text-align: center" width="45%">
+                    <img id="card3" class='card' height="200" src='Cards\AS.svg'>
+                    <img id="card4" class='card' height="200" src='Cards\AS.svg'>
+                
+                </td>
+            </tr>
+            <tr id= "handlabels">
+                <td style="text-align:center">Player One</td>
+                <td></td>
+                <td style="text-align:center">Dealer</td>
+            </tr>
+        </table>
+
+        <br>
+        
+        <p id="play"><text x="0" y="34">Play</text></p>
+        <p id="hit"><text x="0" y="34">Hit</text></p>
+        <p id="hit"><text x="0" y="34">Stand</text></p>
+     </div>
+</body>
+ 
+</html>
