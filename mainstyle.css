@@ -28,6 +28,14 @@ body {
     color: greenyellow;
     margin: 0;
 }
+#stand{
+    font-family: sans-serif;
+    font-size: 30px;
+    font-weight: 1;
+    text-align: center;
+    color: greenyellow;
+    margin: 0;
+}
 
 #handlabels {
     font-family: sans-serif;

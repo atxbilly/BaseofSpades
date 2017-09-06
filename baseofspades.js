@@ -1,6 +1,8 @@
 var hitcount = 0;
 var deckofcards= [];
 var shoe = [];
+var dealerhandtotal = 0;
+var playerhandtotal = 0;
 
     
 function init(){
@@ -12,14 +14,17 @@ function init(){
 function newGame() {
     var hit = document.getElementById("hit");
     hit.addEventListener("click", doHit, true);
-    document.getElementById("hitcard1").src = 200;
-    document.getElementById("hitcard2").src = 200;
-    document.getElementById("hitcard3").src = 200;
-    document.getElementById("hitcard4").src = 200;
-    document.getElementById("hitcard5").src = 200;
-    document.getElementById("hitcard6").src = 200;
-    document.getElementById("hitcard7").src = 200;
-    document.getElementById("hitcard8").src = 200;
+    var stand = document.getElementById("stand");
+    stand.addEventListener("click", doStand, true);
+    
+    // document.getElementById("hitcard1").src = 200;
+    // document.getElementById("hitcard2").src = 200;
+    // document.getElementById("hitcard3").src = 200;
+    // document.getElementById("hitcard4").src = 200;
+    // document.getElementById("hitcard5").src = 200;
+    // document.getElementById("hitcard6").src = 200;
+    // document.getElementById("hitcard7").src = 200;
+    // document.getElementById("hitcard8").src = 200;
 
     document.getElementById("hitcard1").style.height = 200;
     document.getElementById("hitcard2").style.height = 200;
@@ -31,7 +36,7 @@ function newGame() {
     document.getElementById("hitcard8").style.height = 200;
     
     hitcount = 0;
-    if (shoe == 0) {
+    if (shoe.length == 0) {
 
         buildshoe(); 
         alert("Deck empty. Shuffling...");
@@ -53,7 +58,7 @@ function newGame() {
         var card4 = document.getElementById("card4");
         var randocard4 = shoe.pop();
         card4.src = randocard4;};
-    }
+}
 
 function populatedeckofcards(){
     deckofcards = [];
@@ -76,6 +81,7 @@ function shuffdeck(){
 }
 
 function buildshoe(){
+    
     for (g=0; g < 8; g++){
         shuffdeck();
         for (j=0; j < 52; j++){
@@ -86,11 +92,18 @@ function buildshoe(){
 }
 
 function doHit(){
-    var hitcardString = shuffleddeck.pop();
+    var hitcardString = shoe.pop();
     var hitcardID = hitcards[hitcount];
     var hitcardImage = document.getElementById(hitcardID);
     hitcardImage.src = hitcardString;
     hitcount++;
+}
+
+function doStand(){
+    var dealercard3String = shoe.pop();
+    var dealercard3Image = document.getElementById("dealercard3");
+    dealercard3Image.style.height = 200;
+    dealercard3Image.src = dealercard3String;
 }
 
 var cards = [
