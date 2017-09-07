@@ -222,7 +222,7 @@ function doWinLogic(){
     }
 
     else if (winningscore[0][0] == "p"){
-        document.getElementById("winner").textContent = "Player Wins";
+        document.getElementById("winner").textContent = "Player Wins!";
     }
     
 
