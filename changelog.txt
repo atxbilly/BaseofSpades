@@ -1,0 +1,10 @@
+Changelog
+
+added Changelog
+
+added css cursor attribute of default to "buttons"
+
+fixed stand bug
+
+changed the way the buttons are made invisible by changing opacity
+and removing event listener rather than setting text content to ""

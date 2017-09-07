@@ -14,33 +14,33 @@ var playeracebust = false;
 var dealeracebust = false;
 var scores = {};
 var scoresfiltered = [];
-var scoreids = ["ph", "dh", "pa", "da"];
 
-    
-// function init(){
-//     var play = document.getElementById("play");
-//     play.addEventListener("click", newGame, true);
-//     buildshoe();
-// }
 
 function newGame() {
     
+
     document.getElementById("winner").textContent = "";
-
-    var play = document.getElementById("play");
-    play.addEventListener("click", newGame, true);
+    
     buildshoe();
+    
+    var play = document.getElementById("play");
 
+    play.addEventListener("click", newGame, false);
+        
     var hit = document.getElementById("hit");
-    hit.addEventListener("click", doHit, true);
+    hit.style.opacity = "1.0";
+    hit.addEventListener("click", doHit, false);
+    
     var stand = document.getElementById("stand");
-    stand.addEventListener("click", doStand, true);
+    stand.style.opacity = "1.0";
+    stand.addEventListener("click", doStand, false);
+  
 
-    play.textContent = "";
-    hit.textContent = "Hit";
-    stand.textContent = "Stand";
+
+
     playerhandtotal = 0;
     dealerhandtotal = 0;
+    dealerhandcount = 0;
     playeracetotal = 0;
     dealeracetotal = 0;
     scoresfiltered = [];
@@ -110,8 +110,6 @@ function newGame() {
     dealeracescorelabel.textContent = "";
 }
 
-
-
 function populatedeckofcards(){
     deckofcards = [];
     for (n = 0; n < 52; n++){
@@ -163,6 +161,7 @@ function doHit(){
 
 function doStand(){
 
+
     while (dealerhandtotal < 18){
         var dealercardString = shoe.pop();
         aceCheck(dealercardString, "dealer");
@@ -173,17 +172,26 @@ function doStand(){
         dealerhandtotal += getCardValue(dealercardString);
         dealerhandcount++;
     }
-    dealerscorelabel.textContent = dealerhandtotal;
-    dealeracescorelabel.textContent = dealeracetotal;
-    card4.src = randocard4;
-    doWinLogic();
-    
+    if (dealerhandtotal > 17){
+        revealDealerHand();
+    }
 }
+function revealDealerHand(){
+        dealerscorelabel.textContent = dealerhandtotal;
+        dealeracescorelabel.textContent = dealeracetotal;
+        card4.src = randocard4;
+        doWinLogic();   
+}
+    
+
 
 function doWinLogic(){
-    hit.textContent = "";
-    stand.textContent = ""
-    play.textContent = "Play";
+    hit.style.opacity = "0.0";
+    hit.removeEventListener("click", doHit, false);
+    stand.style.opacity = "0.0";
+    stand.removeEventListener("click", doStand, false);
+    
+    
     card4.src = randocard4;
     var dealerscorelabel = document.getElementById("dealerscorelabel")
     dealerscorelabel.textContent = dealerhandtotal;
@@ -224,22 +232,7 @@ function doWinLogic(){
     else if (winningscore[0][0] == "p"){
         document.getElementById("winner").textContent = "Player Wins!";
     }
-    
-
-
-
 }
-    
-
-
-
-
-    
-
-
-
-
-
 
 function getCardValue(cardstring){
     var cvalue = cardvalues[cardstring];
@@ -264,9 +257,9 @@ function aceCheck(cardtocheck, player){
     if (player == "dealer"){
         dealeracetotal += cardacevalue;
     }
-
-
 }
+
+var scoreids = ["ph", "dh", "pa", "da"];
 
 var cards = [
     "Cards/2C.svg", "Cards/2D.svg", "Cards/2H.svg", "Cards/2S.svg",
