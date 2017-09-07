@@ -1,0 +1,20 @@
+Blackjack Baseball combines two classic pastimes into one exciting two player card game.  The object of the game is to score the most runs in nine innings of play.  The game begins by deciding who will be the home team and who will be visitor.  This can be decided by a coin toss or any other method.  Once this is determined, the home player will be the first dealer or pitcher.  They deal one card face down to the batter, one face down to themselves, one face up to the batter, and one face up to themselves.  If, at this point, any player has blackjack, the play stops.  If the dealer (pitcher) has blackjack the batter receives one out.  If the batter has blackjack, they immediately score a home-run.  If no player has blackjack, the batter can ask for more cards until he or she is satisfied or they go over 21.  If the batter is satisfied, the pitcher can then deal themselves more cards until they are satisfied or they go over 21.  This is exactly like regular blackjack hand, except that there are no double downs, splits or surrenders in this game.  
+
+If the batter has a higher total of cards than the dealer (pitcher), they score a base hit.  You can draw a small diamond and use tokens to represent base runners.  
+
+If the pitcher has a higher total, the batter receives an out.  When a batter receives three outs, they then become the dealer (pitcher) and play continues with a new hand, and the game advances to the next inning or part of an inning. 
+
+If a batter goes over 21, they receive an out.
+
+If the pitcher goes over 21, the batter receives a base hit.
+
+Players score runs by advancing base runners to home base or by scoring a home run.
+
+If a pitcher gets 21 either naturally or through accumulation, the batter receives an out. 
+
+If the batter gets 21 naturally, they score a home run.  If they receive it through accumulation, they score a double.  If the batter scores a double, and later receives a base hit, the base runner at second does not advance. 
+
+In the event of a draw on a single hand, the batter receives an out.  
+
+In the event of a draw at the end of nine innings, play continues into extra innings until a winner is decided. 
+
