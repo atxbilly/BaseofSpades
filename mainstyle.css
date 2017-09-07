@@ -1,5 +1,5 @@
 body {
-    background-color: #000000;
+    background-color: #0E0E0E;
 }
 
 #title{
@@ -10,6 +10,15 @@ body {
     color: greenyellow;
     margin: 0;
 } 
+
+#winner{
+    font-family: sans-serif;
+    font-size: 30px;
+    font-weight: 1;
+    text-align: center;
+    color: orange;
+    margin: 0;
+}
 
 #play{
     font-family: sans-serif;
@@ -44,6 +53,24 @@ body {
     text-align: center;
     color: greenyellow;
     margin: 0;
+}
+
+#scorelabels {
+       font-family: sans-serif;
+        font-size: 18px;
+        font-weight: 1;
+        text-align: center;
+        color: greenyellow;
+        margin: 0;
+}
+
+#acescorelabels {
+    font-family: sans-serif;
+     font-size: 18px;
+     font-weight: 1;
+     text-align: center;
+     color: greenyellow;
+     margin: 0;
 }
 
 

@@ -9,15 +9,14 @@
     
 </head>
  
-<body onload="init()">
+<body onload="newGame()">
      <div>
         <h1 id="title">
             <text x="0" y="34">Base of Spades</text>
         </h1>
-        <br/>
         <table id= "cardarea" width= "100%">
             <tr>
-                <td id="playerhand" style="text-align: center" width="45%" height="600px">
+                <td id="playerhand" style="text-align: center" width="45%" height="500px">
                     <img id="card1" class='card' height="200" src='Cards\AS.svg'>
                     <img id="card2" class='card' height="200" src='Cards\AS.svg'>
                     <img id="hitcard1" class='card' height="200">
@@ -29,7 +28,9 @@
                     <img id="hitcard7" class='card' height="200">
                     <img id="hitcard8" class='card' height="200">
                 </td>
-                <td width="10%"></td>
+                <td width="10%">
+                    test
+                </td>
                 <td style="text-align: center" width="45%">
                     <img id="card3" class='card' height="200" src='Cards\AS.svg'>
                     <img id="card4" class='card' height="200" src='Cards\AS.svg'>
@@ -48,9 +49,20 @@
                 <td></td>
                 <td style="text-align:center">Dealer</td>
             </tr>
+            <tr id= "scorelabels">
+                <td id= "playerscorelabel" style="text-align:center"></td>
+                <td></td>
+                <td id= "dealerscorelabel" style="text-align:center"></td>
+            </tr>
+            <tr id= "acescorelabels">
+                <td id= "playeracescorelabel" style="text-align:center"></td>
+                <td></td>
+                <td id= "dealeracescorelabel" style="text-align:center"></td>
+            </tr>
         </table>
 
         <br>
+        <p id="winner"><text x="0" y="34"></text></p>
         <p id="play"><text x="0" y="34">Play</text></p>
         <p id="hit"><text x="0" y="34">Hit</text></p>
         <p id="stand"><text x="0" y="34">Stand</text></p>

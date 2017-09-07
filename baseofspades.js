@@ -4,34 +4,71 @@ var deckofcards= [];
 var shoe = [];
 var dealerhandtotal = 0;
 var playerhandtotal = 0;
+var cardacevalue = 0;
+var dealeracetotal = 0;
+var playeracetotal = 0;
+var randocard4 = "";
+var playerbust = false;
+var dealerbust = false;
+var playeracebust = false;
+var dealeracebust = false;
+var scores = {};
+var scoresfiltered = [];
+var scoreids = ["ph", "dh", "pa", "da"];
 
     
-function init(){
+// function init(){
+//     var play = document.getElementById("play");
+//     play.addEventListener("click", newGame, true);
+//     buildshoe();
+// }
+
+function newGame() {
+    
+    document.getElementById("winner").textContent = "";
+
     var play = document.getElementById("play");
     play.addEventListener("click", newGame, true);
     buildshoe();
-}
 
-function newGame() {
     var hit = document.getElementById("hit");
     hit.addEventListener("click", doHit, true);
     var stand = document.getElementById("stand");
     stand.addEventListener("click", doStand, true);
+
+    play.textContent = "";
+    hit.textContent = "Hit";
+    stand.textContent = "Stand";
+    playerhandtotal = 0;
+    dealerhandtotal = 0;
+    playeracetotal = 0;
+    dealeracetotal = 0;
+    scoresfiltered = [];
     
-    document.getElementById("hitcard1").style.height = 200;
-    document.getElementById("hitcard2").style.height = 200;
-    document.getElementById("hitcard3").style.height = 200;
-    document.getElementById("hitcard4").style.height = 200;
-    document.getElementById("hitcard5").style.height = 200;
-    document.getElementById("hitcard6").style.height = 200;
-    document.getElementById("hitcard7").style.height = 200;
-    document.getElementById("hitcard8").style.height = 200;
-    
+    document.getElementById("hitcard1").src = "";
+    document.getElementById("hitcard2").src = "";
+    document.getElementById("hitcard3").src = "";
+    document.getElementById("hitcard4").src = "";
+    document.getElementById("hitcard5").src = "";
+    document.getElementById("hitcard6").src = "";
+    document.getElementById("hitcard7").src = "";
+    document.getElementById("hitcard8").src = "";
+
+    document.getElementById("dealercard3").src = "";
+    document.getElementById("dealercard4").src = "";
+    document.getElementById("dealercard5").src = "";
+    document.getElementById("dealercard6").src = "";
+    document.getElementById("dealercard7").src = "";
+    document.getElementById("dealercard8").src = "";
+    document.getElementById("dealercard9").src = "";
+    document.getElementById("dealercard10").src = "";
+        
     hitcount = 0;
+
     if (shoe.length == 0) {
 
         buildshoe(); 
-        alert("Deck empty. Shuffling...");
+        alert("Shoe empty. Shuffling...");
     }
     else  
     {   
@@ -39,24 +76,41 @@ function newGame() {
         var randocard = shoe.pop();
         card1.src = randocard;
         playerhandtotal += getCardValue(randocard);
+        aceCheck(randocard, "playerone");
 
         var card3 = document.getElementById("card3");
         var randocard3 = shoe.pop();
         card3.src = randocard3;
         dealerhandtotal += getCardValue(randocard3);
+        aceCheck(randocard3, "dealer");
 
         var card2 = document.getElementById("card2");
         var randocard2 = shoe.pop();
         card2.src = randocard2;
         playerhandtotal += getCardValue(randocard2);
-        alert(playerhandtotal);
+        aceCheck(randocard2, "playerone");
 
         var card4 = document.getElementById("card4");
-        var randocard4 = shoe.pop();
-        card4.src = randocard4;};
+        randocard4 = shoe.pop();
+        card4.src = "Cards/Blue_Back.svg";
         dealerhandtotal += getCardValue(randocard4);
-        alert(dealerhandtotal);
+        aceCheck(randocard4, "dealer");
+    }
+    
+    if (playeracetotal == 21){
+        doWinLogic();
+    }
+
+    var playerscorelabel = document.getElementById("playerscorelabel");
+    playerscorelabel.textContent = playerhandtotal;
+    dealerscorelabel.textContent = "";
+    var playeracescorelabel = document.getElementById("playeracescorelabel");
+    playeracescorelabel.textContent = playeracetotal;
+    var dealeracescorelabel = document.getElementById("dealeracescorelabel");
+    dealeracescorelabel.textContent = "";
 }
+
+
 
 function populatedeckofcards(){
     deckofcards = [];
@@ -91,30 +145,127 @@ function buildshoe(){
 
 function doHit(){
     var hitcardString = shoe.pop();
+    aceCheck(hitcardString, "playerone");
     var hitcardID = hitcards[hitcount];
     var hitcardImage = document.getElementById(hitcardID);
     hitcardImage.src = hitcardString;
+    hitcardImage.style.height = 100;
     playerhandtotal += getCardValue(hitcardString);
-    alert(playerhandtotal);
     hitcount++;
+    playerscorelabel.textContent = playerhandtotal;
+    if (playerhandtotal == 21){
+        doStand();
+    }
+    if (playerhandtotal > 21){
+        doWinLogic();
+    }
 }
 
 function doStand(){
+
     while (dealerhandtotal < 18){
         var dealercardString = shoe.pop();
+        aceCheck(dealercardString, "dealer");
         var dealercardID = dealercards[dealerhandcount];
         var dealercardImage = document.getElementById(dealercardID);
-        dealercardImage.style.height = 200;
+        dealercardImage.style.height = 100;
         dealercardImage.src = dealercardString;
         dealerhandtotal += getCardValue(dealercardString);
         dealerhandcount++;
     }
-    alert(dealerhandtotal);
+    dealerscorelabel.textContent = dealerhandtotal;
+    dealeracescorelabel.textContent = dealeracetotal;
+    card4.src = randocard4;
+    doWinLogic();
+    
 }
+
+function doWinLogic(){
+    hit.textContent = "";
+    stand.textContent = ""
+    play.textContent = "Play";
+    card4.src = randocard4;
+    var dealerscorelabel = document.getElementById("dealerscorelabel")
+    dealerscorelabel.textContent = dealerhandtotal;
+    dealeracescorelabel.textContent = dealeracetotal;
+
+    
+    scores["ph"] = playerhandtotal;
+    scores["dh"] = dealerhandtotal;
+    scores["pa"] = playeracetotal;
+    scores["da"] = dealeracetotal;
+    
+
+    for (var property in scores){
+        scoresfiltered.push([property, scores[property]]);
+    }
+    
+
+    scoresfiltered.sort(function(a,b){
+        return a[1] - b[1];
+    });
+
+    for (i = 0; i < scoresfiltered.length; i++){
+        var k = scoresfiltered[i][1];
+        if (k > 21){
+            scoresfiltered.splice(i,2);
+        }
+    }
+    scoresfiltered.sort(function(a,b){
+        return a[1] - b[1];
+    });
+    var winningscore = scoresfiltered[scoresfiltered.length - 1];
+
+    if (winningscore[0][0] == "d"){
+        document.getElementById("winner").textContent = "Dealer Wins!";
+
+    }
+
+    else if (winningscore[0][0] == "p"){
+        document.getElementById("winner").textContent = "Player Wins";
+    }
+    
+
+
+
+}
+    
+
+
+
+
+    
+
+
+
+
+
 
 function getCardValue(cardstring){
     var cvalue = cardvalues[cardstring];
     return cvalue;
+}
+
+function aceCheck(cardtocheck, player){
+    if (cardtocheck == "Cards/AC.svg" ||
+        cardtocheck == "Cards/AD.svg" ||
+        cardtocheck == "Cards/AH.svg" ||
+        cardtocheck == "Cards/AS.svg"){
+    
+            cardacevalue = 11;
+    }
+    else {
+        cardacevalue = getCardValue(cardtocheck);
+    }
+    if (player == "playerone"){
+        playeracetotal += cardacevalue;
+        playeracescorelabel.textContent = playeracetotal;
+    }
+    if (player == "dealer"){
+        dealeracetotal += cardacevalue;
+    }
+
+
 }
 
 var cards = [
@@ -163,7 +314,7 @@ cardvalues["Cards/6D.svg"] = 6;
 cardvalues["Cards/7D.svg"] = 7;
 cardvalues["Cards/8D.svg"] = 8;
 cardvalues["Cards/9D.svg"] = 9;
-cardvalues["Cards/1DC.svg"] = 10;
+cardvalues["Cards/10D.svg"] = 10;
 cardvalues["Cards/JD.svg"] = 10;
 cardvalues["Cards/QD.svg"] = 10;
 cardvalues["Cards/KD.svg"] = 10;
