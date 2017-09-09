@@ -13,5 +13,13 @@ and removing event listener rather than setting text content to ""
 
 added rules.txt
 
+added home team, pitcher, and batter
+
+added decideHomeTeam() function
+
+added first, second, and third base
+
+added outs, inning, dealer runs, and player runs
+
 
 

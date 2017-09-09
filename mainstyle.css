@@ -16,8 +16,8 @@ body {
     
 }
 #diamond_td{
-    align-content: center;
     vertical-align: top;
+    align-content: center;
     
 }
 
@@ -86,6 +86,42 @@ body {
 }
 
 #acescorelabels {
+    font-family: sans-serif;
+     font-size: 18px;
+     font-weight: 1;
+     text-align: center;
+     color: greenyellow;
+     margin: 0;
+}
+
+#runlabels {
+    font-family: sans-serif;
+     font-size: 18px;
+     font-weight: 1;
+     text-align: center;
+     color: greenyellow;
+     margin: 0;
+}
+
+#outs {
+    font-family: sans-serif;
+     font-size: 18px;
+     font-weight: 1;
+     text-align: center;
+     color: greenyellow;
+     margin: 0;
+}
+
+#pitcher {
+    font-family: sans-serif;
+     font-size: 18px;
+     font-weight: 1;
+     text-align: center;
+     color: greenyellow;
+     margin: 0;
+}
+
+#batter {
     font-family: sans-serif;
      font-size: 18px;
      font-weight: 1;

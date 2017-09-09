@@ -12,9 +12,9 @@
         <h1 id="title">
             <text x="0" y="34">Base of Spades</text>
         </h1>
-        <table id= "cardarea" width= "100%">
+        <table id= "cardarea" width= "100%" border="1px">
             <tr>
-                <td id="playerhand" width="30%" height="500px">
+                <td id="playerhand" width="550px" height="200px">
                     <img id="card1" class='card' height="175" src='Cards\AS.svg'>
                     <img id="card2" class='card' height="175" src='Cards\AS.svg'>
                     <img id="hitcard1" class='card' height="175">
@@ -26,10 +26,12 @@
                     <img id="hitcard7" class='card' height="175">
                     <img id="hitcard8" class='card' height="175">
                 </td>
-                <td id="diamond_td" width="40%">
-                    <canvas id="diamond" width="400" height="500">
+                <td id="diamond_td" width="400px" >
+                        <object id="diamond-svg" data="Cards\Baseball_diamond_clean.svg"
+                         type="image/svg+xml" align="center"></object>
+
                 </td>
-                <td id="dealerhand" width="30%">
+                <td id="dealerhand" width="550px">
                     <img id="card3" class='card' height="175" src='Cards\AS.svg'>
                     <img id="card4" class='card' height="175" src='Cards\AS.svg'>
                     <img id="dealercard3" class='card' height="175">
@@ -44,7 +46,7 @@
             </tr>
             <tr id= "handlabels">
                 <td>Player One</td>
-                <td></td>
+                <td id = "outs"></td>
                 <td>Dealer</td>
             </tr>
             <tr id= "scorelabels">
@@ -57,12 +59,32 @@
                 <td></td>
                 <td id= "dealeracescorelabel"></td>
             </tr>
+            <tr id= "runlabels">
+                <td id= "playerrunslabel"></td>
+                <td></td>
+                <td id= "dealerrunslabel"></td>
+            </tr>
         </table>
         <br>
-        <p id="winner"><text x="0" y="34"></text></p>
-        <p id="play"><text x="0" y="34">Play</text></p>
-        <p id="hit"><text x="0" y="34">Hit</text></p>
-        <p id="stand"><text x="0" y="34">Stand</text></p>
+        <table width="100%">
+            <tr id = "outsandpitcher">
+                <td></td>
+                <td id = "pitcher"></td>
+                <td id = "batter"></td>
+            </tr>
+
+        <tr>
+                <td style="width:50%">
+                    <object data="Cards\UI1.svg" type="image/svg+xml" style="border:0px"
+                        id="diamond" width="100px" height="100px" align="right">
+                    </object>
+                </td>
+                <td style="width:5%">
+                    <object data="Cards\spade.svg" type="image/svg+xml"
+                        id="spade" width="100px" height="100px"></object>
+                </td>
+            </tr>
+        </table>
     </div>
 </body>
  </html>

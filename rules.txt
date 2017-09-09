@@ -1,4 +1,15 @@
-Blackjack Baseball combines two classic pastimes into one exciting two player card game.  The object of the game is to score the most runs in nine innings of play.  The game begins by deciding who will be the home team and who will be visitor.  This can be decided by a coin toss or any other method.  Once this is determined, the home player will be the first dealer or pitcher.  They deal one card face down to the batter, one face down to themselves, one face up to the batter, and one face up to themselves.  If, at this point, any player has blackjack, the play stops.  If the dealer (pitcher) has blackjack the batter receives one out.  If the batter has blackjack, they immediately score a home-run.  If no player has blackjack, the batter can ask for more cards until he or she is satisfied or they go over 21.  If the batter is satisfied, the pitcher can then deal themselves more cards until they are satisfied or they go over 21.  This is exactly like regular blackjack hand, except that there are no double downs, splits or surrenders in this game.  
+Blackjack Baseball combines two classic pastimes into one exciting two player card game.
+The object of the game is to score the most runs in nine innings of play.  
+The game begins by deciding who will be the home team and who will be visitor.  
+This can be decided by a coin toss or any other method.  
+Once this is determined, the home player will be the first dealer or pitcher.  
+They deal one card face down to the batter, one face down to themselves, one face up to the batter, and one face up to themselves.
+If, at this point, any player has blackjack, the play stops.  
+If the dealer (pitcher) has blackjack the batter receives one out.  
+If the batter has blackjack, they immediately score a home-run.  
+If no player has blackjack, the batter can ask for more cards until he or she is satisfied or they go over 21.
+If the batter is satisfied, the pitcher can then deal themselves more cards until they are satisfied or they go over 21.  
+This is exactly like regular blackjack hand, except that there are no double downs, splits or surrenders in this game.  
 
 If the batter has a higher total of cards than the dealer (pitcher), they score a base hit.  You can draw a small diamond and use tokens to represent base runners.  
 

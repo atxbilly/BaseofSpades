@@ -14,37 +14,41 @@ var playeracebust = false;
 var dealeracebust = false;
 var scores = {};
 var scoresfiltered = [];
+var pitcher = "";
+var batter = "";
+var hometeam = "";
+var firstbase = false;
+var secondbase = false;
+var thirdbase = false;
+var playerruns = 0;
+var dealerruns = 0
+var outs = 0;
+var inning = 0;
 
 
 function newGame() {
-    
-
-    document.getElementById("winner").textContent = "";
-    
     buildshoe();
-    
-    var play = document.getElementById("play");
-
-    play.addEventListener("click", newGame, false);
-        
-    var hit = document.getElementById("hit");
-    hit.style.opacity = "1.0";
-    hit.addEventListener("click", doHit, false);
-    
-    var stand = document.getElementById("stand");
-    stand.style.opacity = "1.0";
-    stand.addEventListener("click", doStand, false);
-  
-
-
-
+    playBall();
+ }
+function playBall(){
     playerhandtotal = 0;
     dealerhandtotal = 0;
     dealerhandcount = 0;
     playeracetotal = 0;
     dealeracetotal = 0;
     scoresfiltered = [];
-    
+    var outslabel = document.getElementById("outs");
+    outslabel.textContent = "Outs: " + outs;
+    document.getElementById("winner").textContent = "";
+    var play = document.getElementById("play");
+    play.removeEventListener("click", playBall, false);
+    play.style.opacity = 0;
+    var hit = document.getElementById("hit");
+    hit.addEventListener("click", doHit, false);
+    hit.style.opacity = 1;
+    var stand = document.getElementById("stand")
+    stand.addEventListener("click", doStand, false);
+    stand.style.opacity = 1;    
     document.getElementById("hitcard1").src = "";
     document.getElementById("hitcard2").src = "";
     document.getElementById("hitcard3").src = "";
@@ -63,6 +67,27 @@ function newGame() {
     document.getElementById("dealercard9").src = "";
     document.getElementById("dealercard10").src = "";
         
+    if (inning == 0){
+        decideHomeTeam();
+        inning = inning + .5;
+    }
+
+    document.getElementById("pitcher").textContent = "Pitcher: " + pitcher;
+    document.getElementById("batter").textContent = "Batter: " + batter;
+
+    if (outs == 3){
+        inning = inning + .5;
+        outs = 0;
+        if (batter == "playerone"){
+            pitcher = "playerone";
+            batter = "dealer";
+        }
+        else if (batter == "dealer"){
+            pitcher = "dealer";
+            batter = "playerone";
+        }
+    }
+
     hitcount = 0;
 
     if (shoe.length == 0) {
@@ -97,9 +122,7 @@ function newGame() {
         aceCheck(randocard4, "dealer");
     }
     
-    if (playeracetotal == 21){
-        doWinLogic();
-    }
+    doHomeRunCheck();
 
     var playerscorelabel = document.getElementById("playerscorelabel");
     playerscorelabel.textContent = playerhandtotal;
@@ -108,6 +131,70 @@ function newGame() {
     playeracescorelabel.textContent = playeracetotal;
     var dealeracescorelabel = document.getElementById("dealeracescorelabel");
     dealeracescorelabel.textContent = "";
+    document.getElementById("playerrunslabel").textContent = "Player Runs: " + playerruns;
+    document.getElementById("dealerrunslabel").textContent = "Dealer Runs: " + dealerruns;
+}
+
+function decideHomeTeam(){
+    var ht = Math.floor(Math.random() * 2)
+    if (ht == 0){
+        hometeam = "dealer";
+        pitcher = "dealer";
+        batter = "playerone";
+    }
+    else {
+        hometeam = "playerone";
+        pitcher = "playerone";
+        batter = "dealer";
+    }
+}
+
+function doHomeRunCheck(){
+    var homeruntie = false;
+    var counttrue = 0;
+    if (playeracetotal == 21 && dealeracetotal == 21){
+        outs++;
+        outslabel.textContent = "Outs: " + outs;    
+        homeruntie = true;
+        alert("Nice catch!" + pitcher);
+        document.getElementById("card4").src = randocard4;
+        counttrue += 1;
+    }
+
+    else if (playeracetotal == 21 && pitcher == "dealer" && homeruntie == false){
+        playerruns += 1;
+        alert("Home Run!" + batter);
+        document.getElementById("card4").src = randocard4;
+        counttrue += 1;
+    }
+
+    else if (playeracetotal == 21 && pitcher == "playerone" && homeruntie == false){
+        outs++;
+        outslabel.textContent = "Outs: " + outs;    
+        alert("Nice Catch!" + pitcher);
+        document.getElementById("card4").src = randocard4;
+        counttrue += 1;
+    }
+
+    else if (dealeracetotal == 21 && pitcher == "playerone" && homeruntie == false){
+        dealerruns += 1;
+        alert("Home Run!" + batter);
+        document.getElementById("card4").src = randocard4;
+        counttrue += 1;
+    }
+
+    else if (dealeracetotal == 21 && pitcher == "dealer" && homeruntie == false){
+        outs++;
+        outslabel.textContent = "Outs: " + outs;    
+        alert("Nice Catch!" + pitcher);
+        counttrue += 1;
+    }
+    if (counttrue > 0){
+        play.style.opacity = 1;
+        play.addEventListener("click", playBall, false);
+        
+    }
+    
 }
 
 function populatedeckofcards(){
@@ -183,31 +270,28 @@ function revealDealerHand(){
         doWinLogic();   
 }
     
-
-
 function doWinLogic(){
-    hit.style.opacity = "0.0";
-    hit.removeEventListener("click", doHit, false);
-    stand.style.opacity = "0.0";
-    stand.removeEventListener("click", doStand, false);
-    
     
     card4.src = randocard4;
     var dealerscorelabel = document.getElementById("dealerscorelabel")
     dealerscorelabel.textContent = dealerhandtotal;
     dealeracescorelabel.textContent = dealeracetotal;
 
-    
+    play.style.opacity = 1;
+    play.addEventListener("click", playBall, false)
+    hit.style.opacity = 0;
+    hit.removeEventListener("click", doHit, false);
+    stand.style.opacity = 0;
+    stand.removeEventListener("click", doStand, false)
+
     scores["ph"] = playerhandtotal;
     scores["dh"] = dealerhandtotal;
     scores["pa"] = playeracetotal;
     scores["da"] = dealeracetotal;
     
-
     for (var property in scores){
         scoresfiltered.push([property, scores[property]]);
     }
-    
 
     scoresfiltered.sort(function(a,b){
         return a[1] - b[1];
@@ -219,18 +303,26 @@ function doWinLogic(){
             scoresfiltered.splice(i,2);
         }
     }
+
     scoresfiltered.sort(function(a,b){
         return a[1] - b[1];
     });
+
     var winningscore = scoresfiltered[scoresfiltered.length - 1];
 
-    if (winningscore[0][0] == "d"){
-        document.getElementById("winner").textContent = "Dealer Wins!";
+    if (winningscore[0][0] == "d" && pitcher == "dealer"){
+        outs++;
+        outslabel.textContent = "Outs: " + outs;    }
 
+    else if (winningscore[0][0] == "d" && pitcher == "playerone"){
+        dealerruns+= 1;
     }
 
-    else if (winningscore[0][0] == "p"){
-        document.getElementById("winner").textContent = "Player Wins!";
+    else if (winningscore[0][0] == "p" && pitcher == "playerone"){
+        outs++;
+        outslabel.textContent = "Outs: " + outs;    }
+    else if (winninngscore[0][0] == "p" && pitcher == "dealer"){
+        playerruns += 1;
     }
 }
 
