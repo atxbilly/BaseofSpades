@@ -37,22 +37,8 @@ function playBall(){
     playeracetotal = 0;
     dealeracetotal = 0;
     scoresfiltered = [];
-
-
-
-    var ui = document.getElementById("UI");
-    var uidoc = ui.getSVGDocument();
-
-    var newhand = uidoc.getElementById("text839");
-    newhand.addEventListener("click", playBall, false);
-
     
-    var stand = uidoc.getElementById("text835");
-    stand.addEventListener("click", doStand, false);
 
-    var hit = uidoc.getElementById("text831");
-    hit.addEventListener("click", doHit, false);
- 
     document.getElementById("hitcard1").src = "";
     document.getElementById("hitcard2").src = "";
     document.getElementById("hitcard3").src = "";
@@ -74,6 +60,7 @@ function playBall(){
     if (inning == 0){
         decideHomeTeam();
         inning = inning + .5;
+        
     }
 
    
@@ -124,6 +111,7 @@ function playBall(){
         card4.src = "Cards/Blue_Back.svg";
         dealerhandtotal += getCardValue(randocard4);
         aceCheck(randocard4, "dealer");
+
     }
     
     doHomeRunCheck();
@@ -227,7 +215,6 @@ function doHit(){
     hitcardImage.style.height = 100;
     playerhandtotal += getCardValue(hitcardString);
     hitcount++;
-    playerscorelabel.textContent = playerhandtotal;
     if (playerhandtotal == 21){
         doStand();
     }
@@ -255,7 +242,8 @@ function doStand(){
 }
 function revealDealerHand(){
         card4.src = randocard4;
-        doWinLogic();   
+        doWinLogic();
+  
 }
     
 function doWinLogic(){

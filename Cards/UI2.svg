@@ -9,9 +9,9 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="svg845"
    version="1.1"
-   viewBox="0 -250 564.48 405.67"
+   viewBox="0 -250 600.48032 405.67"
    height="405.66641"
-   width="564.47504"
+   width="600.47504"
    sodipodi:docname="UI2.svg"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
   <sodipodi:namedview
@@ -27,9 +27,9 @@
      inkscape:window-height="1027"
      id="namedview827"
      showgrid="false"
-     inkscape:zoom="2.7689693"
-     inkscape:cx="464.45858"
-     inkscape:cy="427.86726"
+     inkscape:zoom="1.3844847"
+     inkscape:cx="401.52042"
+     inkscape:cy="234.92345"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -54,7 +54,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -104,13 +104,13 @@
   <text
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-     x="66.499702"
-     y="-228.06097"
+     x="66.860847"
+     y="-232.39476"
      id="text1394"><tspan
        sodipodi:role="line"
        id="tspan1392"
-       x="66.499702"
-       y="-228.06097"
+       x="66.860847"
+       y="-232.39476"
        style="fill:#88aa00;stroke-width:0.26458332">Player One</tspan></text>
   <text
      xml:space="preserve"
@@ -126,14 +126,14 @@
   <text
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-     x="308.72702"
-     y="-107.99978"
+     x="330.3959"
+     y="-108.36092"
      id="text1402"><tspan
        sodipodi:role="line"
        id="tspan1400"
-       x="308.72702"
-       y="-107.99978"
-       style="fill:#88aa00;stroke-width:0.26458332">Outs</tspan></text>
+       x="330.3959"
+       y="-108.36092"
+       style="fill:#88aa00;stroke-width:0.26458332">Outs:</tspan></text>
   <text
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -203,28 +203,28 @@
   <text
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-     x="66.315712"
+     x="134.93391"
      y="-106.99549"
      id="text1430"><tspan
        sodipodi:role="line"
        id="tspan1428"
-       x="66.315712"
+       x="134.93391"
        y="-106.99549"
        style="fill:#88aa00;stroke-width:0.26458332">Pitcher:</tspan></text>
   <text
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-     x="184.92155"
-     y="-106.99046"
+     x="238.37154"
+     y="-107.71276"
      id="text1434"><tspan
        sodipodi:role="line"
        id="tspan1432"
-       x="184.92155"
-       y="-106.99046"
+       x="238.37154"
+       y="-107.71276"
        style="fill:#88aa00;stroke-width:0.26458332">Batter:</tspan></text>
   <g
      id="g2069"
-     transform="matrix(0.52160048,0,0,0.48753666,64.250634,-126.9444)">
+     transform="matrix(0.52160048,0,0,0.48753666,111.56107,-126.58325)">
     <path
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccc"
@@ -379,4 +379,15 @@
        d="m 295,405 c 0.15103,-2.25722 -1.8125,-1.02083 -2.71875,-1.53125 -11.6548,15.69318 -11.92413,36.21425 -0.65625,52.1875 14.15003,20.05894 41.97231,24.86877 62.03125,10.71875 20.05894,-14.15003 24.86877,-41.97231 10.71875,-62.03125 L 361,405 c 1.65625,2.375 0,0 1.65625,2.375 L 293.875,406.53125 Z m -1.125,1.53125 68.78125,0.84375 c 12.14391,18.61635 7.59358,43.61332 -10.71875,56.53125 -18.73256,13.21436 -44.62938,8.76381 -57.84375,-9.96875 -10.26624,-14.55333 -10.25378,-32.88144 -0.21875,-47.40625 z"
        style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40.00035095px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.00000882"
+     x="394.37402"
+     y="-109.41291"
+     id="text874"><tspan
+       sodipodi:role="line"
+       id="tspan872"
+       x="394.37402"
+       y="-109.41291"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.53342628px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#88aa00;stroke-width:1.00000882">Inning</tspan></text>
 </svg>
