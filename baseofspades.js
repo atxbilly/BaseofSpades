@@ -24,19 +24,266 @@ var playerruns = 0;
 var dealerruns = 0
 var outs = 0;
 var inning = 0;
+var playerhandtotalLabel;
+var dealerhandtotalLabel;
+var playeracehandLabel;
+var dealeracehandLabel;
+var inningLabel;
+var outsLabel;
+var pitcherLabel;
+var dealerLabel;
+var playerrunsLabel;
+var dealerrunsLabel;
+var hitLabel;
+var standLabel;
+var newhandLabel;
+var diamond;
+var firstbase;
+var svgContainer;
+var svgBorder;
+var titleContainer;
+var titlestring;
+var phandtotalsContainer;
+var dhandtotalsContainer;
 
 
 function newGame() {
+
+// make a container for the SVG UI
+svgContainer = d3.select("#UI").append("svg")
+                    .attr("width", 600)
+                    .attr("height", 400)
+                    .attr("x", 0)
+                    .attr("y", -250);  
+//append title svg to title div, same for playerhandtotals
+titleContainer = d3.select("#title").append("svg")
+                    .attr("width", 300)
+                    .attr("height", 60)
+                    .attr("x", 0)
+                    .attr("y", 0);
+phandtotalsContainer = d3.select("#playerhandtotalsContainer").append("svg")
+                    .attr("width", 300)
+                    .attr("height", 100)
+                    .attr("x", 0)
+                    .attr("y", 0);
+dhandtotalsContainer = d3.select("#dealerhandtotalsContainer").append("svg")
+                    .attr("width", 300)
+                    .attr("height", 100)
+                    .attr("x", 0)
+                    .attr("y", 0);                                                
+
+//append UI SVG elements
+svgBorder = svgContainer.selectAll("svgBorder")
+                    .data("d")
+                    .enter()
+                    .append("rect");
+
+playerhandtotalLabel = phandtotalsContainer.selectAll("playerhandtotalLabel")
+                    .data("d")
+                    .enter()
+                    .append("text");
+
+dealerhandtotalLabel = dhandtotalsContainer.selectAll("dealerhandtotalLabel")
+                    .data("d")
+                    .enter()
+                    .append("text");
+playeracehandLabel = phandtotalsContainer.selectAll("playeracehandLabel")
+                    .data("d")
+                    .enter()
+                    .append("text");
+dealeracehandLabel = dhandtotalsContainer.selectAll("playeracehandLabel")
+                    .data("d")
+                    .enter()
+                    .append("text");
+playerrunsLabel = phandtotalsContainer.selectAll("playerrunsLabel")
+                    .data("d")
+                    .enter()
+                    .append("text");
+dealerrunsLabel = dhandtotalsContainer.selectAll("dealerrunsLabel")
+                    .data("d")
+                    .enter()
+                    .append("text");
+                    
+batterLabel = svgContainer.selectAll("batterLabel")
+                    .data("d")
+                    .enter()
+                    .append("text"); 
+pitcherLabel = svgContainer.selectAll("pitcherLabel")
+                    .data("d")
+                    .enter()
+                    .append("text");
+outsLabel = svgContainer.selectAll("outsLabel")
+                    .data("d")
+                    .enter()
+                    .append("text");
+inningLabel = svgContainer.selectAll("inningLabel")
+                    .data("d")
+                    .enter()
+                    .append("text");
+hitLabel = svgContainer.selectAll("hitLabel")
+                    .data("d")
+                    .enter()
+                    .append("text");         
+standLabel = svgContainer.selectAll("standLabel")
+                    .data("d")
+                    .enter()
+                    .append("text");       
+newhandLabel = svgContainer.selectAll("newhandLabel")
+                    .data("d")
+                    .enter()
+                    .append("text");                                                                                                                                     
+titlestring = titleContainer.selectAll("titlestring")
+                    .data("d")
+                    .enter()
+                    .append("text");
+
+// set UI element attributes
+svgBorder
+    .attr("stroke" , "black")
+    .attr("height", 400)
+    .attr("width", 400)
+    .attr("cursor", "default");
+
+playerhandtotalLabel
+    .attr("x", 50)
+    .attr("y", 30)
+    .text( "Player Hand Total")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px")
+    .attr("fill", "#88AA00")
+    .attr("cursor", "default");
+playeracehandLabel
+    .attr("x", 50)
+    .attr("y", 50)
+    .text( "Player Ace Total")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px")
+    .attr("fill", "#88AA00")
+    .attr("cursor", "default");  
+                
+dealerhandtotalLabel
+    .attr("x" , 50)
+    .attr("y", 30)
+    .text("")
+    .attr("font-family", "sans-serif")
+    .attr("font-size","20px")
+    .attr("fill" , "#88AA00")
+    .attr("cursor","default");
+
+dealeracehandLabel
+    .attr("x", 50)
+    .attr("y", 50)
+    .text( "")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px")
+    .attr("fill", "#88AA00")
+    .attr("cursor", "default");     
+
+batterLabel
+    .attr("x", 50)
+    .attr("y", 30)
+    .text( "Batter:")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px")
+    .attr("fill", "#88AA00")
+    .attr("cursor", "default");  
+pitcherLabel
+    .attr("x", 50)
+    .attr("y", 60)
+    .text( "Pitcher:")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px")
+    .attr("fill", "#88AA00")
+    .attr("cursor", "default"); 
+outsLabel
+    .attr("x", 50)
+    .attr("y", 90)
+    .text( "Outs:")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px")
+    .attr("fill", "#88AA00")
+    .attr("cursor", "default"); 
+inningLabel
+    .attr("x", 50)
+    .attr("y", 120)
+    .text( "Inning:")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px")
+    .attr("fill", "#88AA00")
+    .attr("cursor", "default"); 
+playerrunsLabel
+    .attr("x", 50)
+    .attr("y", 70)
+    .text( "Player Runs:")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px")
+    .attr("fill", "#88AA00")
+    .attr("cursor", "default"); 
+dealerrunsLabel
+    .attr("x", 50)
+    .attr("y", 70)
+    .text( "Dealer Runs:")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "20px")
+    .attr("fill", "#88AA00")
+    .attr("cursor", "default"); 
+hitLabel
+    .attr("x", 300)
+    .attr("y", 30)
+    .text( "Hit")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "30px")
+    .attr("fill", "#88AA00")
+    .attr("cursor", "default")
+    .attr("onclick","doHit()");
+standLabel
+    .attr("x", 300)
+    .attr("y", 70)
+    .text( "Stand")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "30px")
+    .attr("fill", "#88AA00")
+    .attr("cursor", "default")
+    .attr("onclick", "doStand()");
+newhandLabel    
+    .attr("x", 300)
+    .attr("y", 110)
+    .text( "New Hand")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "30px")
+    .attr("fill", "#88AA00")
+    .attr("cursor", "default")
+    .attr("onclick", "playBall()");
+titlestring    
+    .text("Base of Spades")
+    .attr("font-family", "sans-serif")
+    .attr("font-size","20px")
+    .attr("fill" , "#88AA00")
+    .attr("cursor","default")
+    .attr("x", 50)    
+    .attr("y", 50);
+    
+
+        
+
     buildshoe();
     playBall();
  }
 function playBall(){
+
     playerhandtotal = 0;
     dealerhandtotal = 0;
     dealerhandcount = 0;
     playeracetotal = 0;
     dealeracetotal = 0;
     scoresfiltered = [];
+
+
+    dealerhandtotalLabel.text("");
+    dealeracehandLabel.text("");
+    playerrunsLabel.text("Player Runs: " + playerruns);
+    dealerrunsLabel.text("Dealer Runs: " + dealerruns);
+    outsLabel.text("Outs: " + outs);
     
 
     document.getElementById("hitcard1").src = "";
@@ -60,6 +307,8 @@ function playBall(){
     if (inning == 0){
         decideHomeTeam();
         inning = inning + .5;
+        inningLabel.text("Inning: " + inning);
+ 
         
     }
 
@@ -67,16 +316,23 @@ function playBall(){
 
     if (outs == 3){
         inning = inning + .5;
+        inningLabel.text("Inning: " + inning);
         outs = 0;
+        outsLabel.text("Outs: " + outs);
         if (batter == "playerone"){
             pitcher = "playerone";
             batter = "dealer";
+            pitcherLabel.text("Pitcher: " + pitcher.toUpperCase());
+            batterLabel.text("Batter: " + batter.toUpperCase());
         }
         else if (batter == "dealer"){
             pitcher = "dealer";
             batter = "playerone";
+            pitcherLabel.text("Pitcher: " + pitcher.toUpperCase());
+            batterLabel.text("Batter: " + batter.toUpperCase());
         }
     }
+
   
     hitcount = 0;
 
@@ -104,14 +360,15 @@ function playBall(){
         var randocard2 = shoe.pop();
         card2.src = randocard2;
         playerhandtotal += getCardValue(randocard2);
+        playerhandtotalLabel.text(playerhandtotal);
         aceCheck(randocard2, "playerone");
+        playeracehandLabel.text("(" +playeracetotal + ")");
 
         var card4 = document.getElementById("card4");
         randocard4 = shoe.pop();
         card4.src = "Cards/Blue_Back.svg";
         dealerhandtotal += getCardValue(randocard4);
         aceCheck(randocard4, "dealer");
-
     }
     
     doHomeRunCheck();
@@ -119,15 +376,20 @@ function playBall(){
 
 function decideHomeTeam(){
     var ht = Math.floor(Math.random() * 2)
+    alert(ht);
     if (ht == 0){
         hometeam = "dealer";
         pitcher = "dealer";
         batter = "playerone";
+        pitcherLabel.text("Pitcher: " + pitcher.toUpperCase());
+        batterLabel.text("Batter: " + batter.toUpperCase());
     }
     else {
         hometeam = "playerone";
         pitcher = "playerone";
         batter = "dealer";
+        pitcherLabel.text("Pitcher: " + pitcher.toUpperCase());
+        batterLabel.text("Batter: " + batter.toUpperCase());
     }
 }
 
@@ -140,6 +402,7 @@ function doHomeRunCheck(){
         alert("Nice catch!" + pitcher);
         document.getElementById("card4").src = randocard4;
         counttrue += 1;
+        playBall();
     }
 
     else if (playeracetotal == 21 && pitcher == "dealer" && homeruntie == false){
@@ -147,6 +410,7 @@ function doHomeRunCheck(){
         alert("Home Run!" + batter);
         document.getElementById("card4").src = randocard4;
         counttrue += 1;
+        playBall();
     }
 
     else if (playeracetotal == 21 && pitcher == "playerone" && homeruntie == false){
@@ -154,6 +418,7 @@ function doHomeRunCheck(){
         alert("Nice Catch!" + pitcher);
         document.getElementById("card4").src = randocard4;
         counttrue += 1;
+        playBall();
     }
 
     else if (dealeracetotal == 21 && pitcher == "playerone" && homeruntie == false){
@@ -161,15 +426,19 @@ function doHomeRunCheck(){
         alert("Home Run!" + batter);
         document.getElementById("card4").src = randocard4;
         counttrue += 1;
+        playBall();
     }
 
     else if (dealeracetotal == 21 && pitcher == "dealer" && homeruntie == false){
         outs++;
         alert("Nice Catch!" + pitcher);
         counttrue += 1;
+        playBall();
     }
     if (counttrue > 0){
-
+        outsLabel.text("Outs: " + outs);
+        playerrunsLabel.text("Player Runs: " + playerruns);
+        dealerrunsLabel.text("Dealer Runs: " + dealerruns);
         
     }
     
@@ -209,11 +478,13 @@ function buildshoe(){
 function doHit(){
     var hitcardString = shoe.pop();
     aceCheck(hitcardString, "playerone");
+    playeracehandLabel.text("(" + playeracetotal + ")");
     var hitcardID = hitcards[hitcount];
     var hitcardImage = document.getElementById(hitcardID);
     hitcardImage.src = hitcardString;
     hitcardImage.style.height = 100;
     playerhandtotal += getCardValue(hitcardString);
+    playerhandtotalLabel.text(playerhandtotal);
     hitcount++;
     if (playerhandtotal == 21){
         doStand();
@@ -229,25 +500,30 @@ function doStand(){
     while (dealerhandtotal < 18){
         var dealercardString = shoe.pop();
         aceCheck(dealercardString, "dealer");
+        dealeracehandLabel.text("(" +dealeracetotal + ")");
         var dealercardID = dealercards[dealerhandcount];
         var dealercardImage = document.getElementById(dealercardID);
         dealercardImage.style.height = 100;
         dealercardImage.src = dealercardString;
         dealerhandtotal += getCardValue(dealercardString);
+        dealerhandtotalLabel.text(dealerhandtotal);
         dealerhandcount++;
     }
     if (dealerhandtotal > 17){
         revealDealerHand();
+        
     }
+
 }
 function revealDealerHand(){
         card4.src = randocard4;
+        dealerhandtotalLabel.text(dealerhandtotal);
+        dealeracehandLabel.text("(" + dealeracetotal + ")");
         doWinLogic();
   
 }
     
 function doWinLogic(){
-    
     card4.src = randocard4;
 
 
@@ -279,18 +555,27 @@ function doWinLogic(){
 
     if (winningscore[0][0] == "d" && pitcher == "dealer"){
         outs++;
+        outsLabel.text("Outs:" + outs);
+        alert("case1: outs should increase");
     }
 
     else if (winningscore[0][0] == "d" && pitcher == "playerone"){
         dealerruns+= 1;
+        dealerrunsLabel.text("Dealer Runs: " + dealerruns);
+        alert("case 2: dealer runs should increase");
     }
 
     else if (winningscore[0][0] == "p" && pitcher == "playerone"){
         outs++;
+        outsLabel.text("Outs: " + outs);
+        alert("case3: outs should increase");
     }
-    else if (winninngscore[0][0] == "p" && pitcher == "dealer"){
+    else if (winningscore[0][0] == "p" && pitcher == "dealer"){
         playerruns += 1;
+        playerrunsLabel.text("Player Runs: " + playerruns);
+        alert("case4: player runs should increase");
     }
+    playBall();
 }
 
 function getCardValue(cardstring){

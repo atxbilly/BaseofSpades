@@ -5,13 +5,13 @@
     <title>Base of Spades</title>
     <link rel="stylesheet" type="text/css" href="mainstyle.css">
     <script src="baseofspades.js" type="text/javascript"></script>
-    
+    <script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
+
 <body onload="newGame()">
-     <div>
-        <h1 id="title">
-            <text>Base of Spades</text>
-        </h1>
+
+        <div id="title"></div>
+        
         <div id="container">
             <div id="c1"><img id="card1" class='card' height="150" src='Cards\AS.svg'></div>
             <div id="c2"><img id="card2" class='card' height="150" src='Cards\AS.svg'></div>
@@ -24,6 +24,7 @@
             <div id="c9"><img id="hitcard7" class='card' height="150"></div>
             <div id="c10"><img id="hitcard8" class='card' height="150"></div>
         </div>
+        <div id="playerhandtotalsContainer"></div>
         <div id="dealercontainer">
             <div id="c11"><img id="card3" class='card' height="150" src='Cards\AS.svg'></div>
             <div id="c12"><img id="card4" class='card' height="150" src='Cards\AS.svg'></div>
@@ -36,16 +37,13 @@
             <div id="c19"><img id="dealercard9" class='card' height="150"></div>
             <div id="c20"><img id="dealercard10" class='card' height="150"></div>
         </div>
-             
-                <br/><br/><br/><br/><br/><br/>
+        <div id="dealerhandtotalsContainer"></div>
 
-                <table style="width:100%">
-                    <object data="Cards\spade.svg" type="image/svg+xml"
-                        id="spade" width="100px" height="100px" align="center">
-                    </object>
-                </table></center>
-                
+        <div id="UI"></div>
         
-    </div>
-</body>
+        <object data="Cards\spade.svg" type="image/svg+xml"
+                id="spade" width="100px" height="100px" align="center">
+        </object>
+
+    </body>
  </html>
