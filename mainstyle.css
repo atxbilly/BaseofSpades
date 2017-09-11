@@ -1,5 +1,5 @@
 body {
-    background-color: #0E0E0E;
+    background-color: #000;
 }
 
 #title{
@@ -10,60 +10,158 @@ body {
     color: greenyellow;
     margin: 0;
 } 
-
-#diamond{
-    border:1px solid #FFFFFF;
-    
+#UI{
+    cursor: pointer;
 }
-#diamond_td{
-    vertical-align: top;
-    align-content: center;
-    
-}
-
-#playerhand{
-    text-align: center;
-}
-
-#dealerhand{
-    text-align: center;
-}
-#winner{
-    font-family: sans-serif;
-    font-size: 30px;
-    font-weight: 1;
-    text-align: center;
-    color: orange;
-    margin: 0;
-}
-
-#play{
-    font-family: sans-serif;
-    font-size: 30px;
-    font-weight: 1;
-    text-align: center;
-    color: greenyellow;
-    margin: 0;
+text{
     cursor: default;
 }
 
-#hit{
-    font-family: sans-serif;
-    font-size: 30px;
-    font-weight: 1;
-    text-align: center;
-    color: greenyellow;
-    margin: 0;
-    cursor: default;
+#container{
+    width:250px;
+    height:250px;
+    position:relative;
+    border:#000 solid 1px;
 }
-#stand{
-    font-family: sans-serif;
-    font-size: 30px;
-    font-weight: 1;
-    text-align: center;
-    color: greenyellow;
-    margin: 0;
-    cursor: default;
+#c1{
+    width:100px;
+    height:50px;
+    top:50px;
+    left:50px;
+    position:absolute;
+}
+#c2{
+    width:100px;
+    height:50px;
+    top:50px;
+    left:80px;
+    position:absolute;
+}
+#c3{
+    width:100px;
+    height:50px;
+    top:50px;
+    left:110px;
+    position:absolute;
+}
+#c4{
+    width:100px;
+    height:50px;
+    top:50px;
+    left:140px;
+    position:absolute;
+}
+#c5{
+    width:100px;
+    height:50px;
+    top:50px;
+    left:170px;
+    position:absolute;
+}
+#c6{
+    width:100px;
+    height:50px;
+    top:50px;
+    left:200px;
+    position:absolute;
+}
+#c7{
+    width:100px;
+    height:50px;
+    top:50px;
+    left:230px;
+    position:absolute;
+}
+#c8{
+    width:100px;
+    height:50px;
+    top:50px;
+    left:260px;
+    position:absolute;
+}
+#c9{
+    width:100px;
+    height:50px;
+    top:50px;
+    left:290px;
+    position:absolute;
+}
+#c10{
+    width:100px;
+    height:50px;
+   top:50px;
+    left:320px;
+    position:absolute;
+}
+#c11{
+    width:100px;
+    height:50px;
+    top:50px;
+    left:420px;
+    position:absolute;
+}
+#c12{
+    width:100px;
+    height:50px;
+    top:50px;
+    left:450px;
+    position:absolute;
+}
+#c13{
+    width:100px;
+    height:50px;
+    top:50px;
+    left:480px;
+    position:absolute;
+}
+#c14{
+    width:100px;
+    height:50px;
+    top:50px;
+    left:510px;
+    position:absolute;
+}
+#c15{
+    width:100px;
+    height:50px;
+    top:50px;
+    left:540px;
+    position:absolute;
+}
+#c16{
+    width:100px;
+    height:50px;
+    top:50px;
+    left:570px;
+    position:absolute;
+}
+#c17{
+    width:100px;
+    height:50px;
+    top:50px;
+    left:600px;
+    position:absolute;
+}
+#c18{
+    width:100px;
+    height:50px;
+    top:50px;
+    left:630px;
+    position:absolute;
+}
+#c19{
+    width:100px;
+    height:50px;
+    top:50px;
+    left:660px;
+    position:absolute;
+}
+#c20{
+    width:100px;
+    height:50px;
+   top:50px;
+    left:690px;
+    position:absolute;
 }
 
 #handlabels {

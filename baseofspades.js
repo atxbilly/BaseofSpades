@@ -37,18 +37,22 @@ function playBall(){
     playeracetotal = 0;
     dealeracetotal = 0;
     scoresfiltered = [];
-    var outslabel = document.getElementById("outs");
-    outslabel.textContent = "Outs: " + outs;
-    document.getElementById("winner").textContent = "";
-    var play = document.getElementById("play");
-    play.removeEventListener("click", playBall, false);
-    play.style.opacity = 0;
-    var hit = document.getElementById("hit");
-    hit.addEventListener("click", doHit, false);
-    hit.style.opacity = 1;
-    var stand = document.getElementById("stand")
+
+
+
+    var ui = document.getElementById("UI");
+    var uidoc = ui.getSVGDocument();
+
+    var newhand = uidoc.getElementById("text839");
+    newhand.addEventListener("click", playBall, false);
+
+    
+    var stand = uidoc.getElementById("text835");
     stand.addEventListener("click", doStand, false);
-    stand.style.opacity = 1;    
+
+    var hit = uidoc.getElementById("text831");
+    hit.addEventListener("click", doHit, false);
+ 
     document.getElementById("hitcard1").src = "";
     document.getElementById("hitcard2").src = "";
     document.getElementById("hitcard3").src = "";
@@ -72,8 +76,7 @@ function playBall(){
         inning = inning + .5;
     }
 
-    document.getElementById("pitcher").textContent = "Pitcher: " + pitcher;
-    document.getElementById("batter").textContent = "Batter: " + batter;
+   
 
     if (outs == 3){
         inning = inning + .5;
@@ -87,7 +90,7 @@ function playBall(){
             batter = "playerone";
         }
     }
-
+  
     hitcount = 0;
 
     if (shoe.length == 0) {
@@ -102,6 +105,7 @@ function playBall(){
         card1.src = randocard;
         playerhandtotal += getCardValue(randocard);
         aceCheck(randocard, "playerone");
+ 
 
         var card3 = document.getElementById("card3");
         var randocard3 = shoe.pop();
@@ -123,16 +127,6 @@ function playBall(){
     }
     
     doHomeRunCheck();
-
-    var playerscorelabel = document.getElementById("playerscorelabel");
-    playerscorelabel.textContent = playerhandtotal;
-    dealerscorelabel.textContent = "";
-    var playeracescorelabel = document.getElementById("playeracescorelabel");
-    playeracescorelabel.textContent = playeracetotal;
-    var dealeracescorelabel = document.getElementById("dealeracescorelabel");
-    dealeracescorelabel.textContent = "";
-    document.getElementById("playerrunslabel").textContent = "Player Runs: " + playerruns;
-    document.getElementById("dealerrunslabel").textContent = "Dealer Runs: " + dealerruns;
 }
 
 function decideHomeTeam(){
@@ -154,7 +148,6 @@ function doHomeRunCheck(){
     var counttrue = 0;
     if (playeracetotal == 21 && dealeracetotal == 21){
         outs++;
-        outslabel.textContent = "Outs: " + outs;    
         homeruntie = true;
         alert("Nice catch!" + pitcher);
         document.getElementById("card4").src = randocard4;
@@ -170,7 +163,6 @@ function doHomeRunCheck(){
 
     else if (playeracetotal == 21 && pitcher == "playerone" && homeruntie == false){
         outs++;
-        outslabel.textContent = "Outs: " + outs;    
         alert("Nice Catch!" + pitcher);
         document.getElementById("card4").src = randocard4;
         counttrue += 1;
@@ -185,13 +177,11 @@ function doHomeRunCheck(){
 
     else if (dealeracetotal == 21 && pitcher == "dealer" && homeruntie == false){
         outs++;
-        outslabel.textContent = "Outs: " + outs;    
         alert("Nice Catch!" + pitcher);
         counttrue += 1;
     }
     if (counttrue > 0){
-        play.style.opacity = 1;
-        play.addEventListener("click", playBall, false);
+
         
     }
     
@@ -264,8 +254,6 @@ function doStand(){
     }
 }
 function revealDealerHand(){
-        dealerscorelabel.textContent = dealerhandtotal;
-        dealeracescorelabel.textContent = dealeracetotal;
         card4.src = randocard4;
         doWinLogic();   
 }
@@ -273,16 +261,7 @@ function revealDealerHand(){
 function doWinLogic(){
     
     card4.src = randocard4;
-    var dealerscorelabel = document.getElementById("dealerscorelabel")
-    dealerscorelabel.textContent = dealerhandtotal;
-    dealeracescorelabel.textContent = dealeracetotal;
 
-    play.style.opacity = 1;
-    play.addEventListener("click", playBall, false)
-    hit.style.opacity = 0;
-    hit.removeEventListener("click", doHit, false);
-    stand.style.opacity = 0;
-    stand.removeEventListener("click", doStand, false)
 
     scores["ph"] = playerhandtotal;
     scores["dh"] = dealerhandtotal;
@@ -312,7 +291,7 @@ function doWinLogic(){
 
     if (winningscore[0][0] == "d" && pitcher == "dealer"){
         outs++;
-        outslabel.textContent = "Outs: " + outs;    }
+    }
 
     else if (winningscore[0][0] == "d" && pitcher == "playerone"){
         dealerruns+= 1;
@@ -320,7 +299,7 @@ function doWinLogic(){
 
     else if (winningscore[0][0] == "p" && pitcher == "playerone"){
         outs++;
-        outslabel.textContent = "Outs: " + outs;    }
+    }
     else if (winninngscore[0][0] == "p" && pitcher == "dealer"){
         playerruns += 1;
     }
@@ -344,7 +323,6 @@ function aceCheck(cardtocheck, player){
     }
     if (player == "playerone"){
         playeracetotal += cardacevalue;
-        playeracescorelabel.textContent = playeracetotal;
     }
     if (player == "dealer"){
         dealeracetotal += cardacevalue;
