@@ -7,12 +7,23 @@ body {
     font-size: 64px;
     font-weight: 1;
     text-align: center;
-    color: greenyellow;
+    color: #88AA00;
     margin: 0;
     position: relative;
-} 
+}
+#notificationContainer{
+    font-family: sans-serif;
+    font-size: 20px;
+    text-align: center;
+    color: #88AA00;
+    margin: 0;
+    position: relative;
+}  
+
 #UI{
     cursor: pointer;
+    position: relative;
+    text-align: center;
 }
 text{
     cursor: default;

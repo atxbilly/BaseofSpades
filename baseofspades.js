@@ -45,6 +45,8 @@ var titleContainer;
 var titlestring;
 var phandtotalsContainer;
 var dhandtotalsContainer;
+var notificationContainer;
+var notification;
 
 
 function newGame() {
@@ -54,10 +56,10 @@ svgContainer = d3.select("#UI").append("svg")
                     .attr("width", 600)
                     .attr("height", 400)
                     .attr("x", 0)
-                    .attr("y", -250);  
+                    .attr("y", 0);  
 //append title svg to title div, same for playerhandtotals
 titleContainer = d3.select("#title").append("svg")
-                    .attr("width", 300)
+                    .attr("width", 350)
                     .attr("height", 60)
                     .attr("x", 0)
                     .attr("y", 0);
@@ -69,6 +71,11 @@ phandtotalsContainer = d3.select("#playerhandtotalsContainer").append("svg")
 dhandtotalsContainer = d3.select("#dealerhandtotalsContainer").append("svg")
                     .attr("width", 300)
                     .attr("height", 100)
+                    .attr("x", 0)
+                    .attr("y", 0);
+notificationContainer = d3.select("#notificationContainer").append("svg")
+                    .attr("width", 350)
+                    .attr("height", 35)
                     .attr("x", 0)
                     .attr("y", 0);                                                
 
@@ -133,6 +140,10 @@ newhandLabel = svgContainer.selectAll("newhandLabel")
                     .enter()
                     .append("text");                                                                                                                                     
 titlestring = titleContainer.selectAll("titlestring")
+                    .data("d")
+                    .enter()
+                    .append("text");
+notification = notificationContainer.selectAll("notification")
                     .data("d")
                     .enter()
                     .append("text");
@@ -228,41 +239,60 @@ dealerrunsLabel
     .attr("fill", "#88AA00")
     .attr("cursor", "default"); 
 hitLabel
-    .attr("x", 300)
+    .attr("x", 400)
     .attr("y", 30)
     .text( "Hit")
     .attr("font-family", "sans-serif")
     .attr("font-size", "30px")
     .attr("fill", "#88AA00")
     .attr("cursor", "default")
-    .attr("onclick","doHit()");
+    .attr("onclick","doHit()")
+     .on("click", function(){hitLabel.transition().attr("font-size", 26).duration(100)
+     .on("end", function(){hitLabel.transition().attr("font-size", 30).duration(100);});});
+    
+    
 standLabel
-    .attr("x", 300)
+    .attr("x", 400)
     .attr("y", 70)
     .text( "Stand")
     .attr("font-family", "sans-serif")
     .attr("font-size", "30px")
     .attr("fill", "#88AA00")
     .attr("cursor", "default")
-    .attr("onclick", "doStand()");
+    .attr("onclick", "doStand()")
+    .on("click", function(){standLabel.transition().attr("font-size", 26).duration(100)
+    .on("end", function(){standLabel.transition().attr("font-size", 30).duration(100);});});
+    
 newhandLabel    
-    .attr("x", 300)
+    .attr("x", 400)
     .attr("y", 110)
     .text( "New Hand")
     .attr("font-family", "sans-serif")
     .attr("font-size", "30px")
     .attr("fill", "#88AA00")
     .attr("cursor", "default")
-    .attr("onclick", "playBall()");
+    .attr("onclick", "playBall()")
+    .on("click", function(){newhandLabel.transition().attr("font-size", 26).duration(100)
+    .on("end", function(){newhandLabel.transition().attr("font-size", 30).duration(100);});});
+    
 titlestring    
     .text("Base of Spades")
+    .attr("font-family", "sans-serif")
+    .attr("font-size","50px")
+    .attr("fill" , "#88AA00")
+    .attr("cursor","default")
+    .attr("x", 0)    
+    .attr("y", 50);
+
+notification    
+    .text("==========Play Ball!===========")
     .attr("font-family", "sans-serif")
     .attr("font-size","20px")
     .attr("fill" , "#88AA00")
     .attr("cursor","default")
-    .attr("x", 50)    
-    .attr("y", 50);
-    
+    .attr("x", 0)    
+    .attr("y", 20);    
+
 
         
 
@@ -339,7 +369,7 @@ function playBall(){
     if (shoe.length == 0) {
 
         buildshoe(); 
-        alert("Shoe empty. Shuffling...");
+        notification.text("Shoe empty. Shuffling...");
     }
     else  
     {   
@@ -376,7 +406,6 @@ function playBall(){
 
 function decideHomeTeam(){
     var ht = Math.floor(Math.random() * 2)
-    alert(ht);
     if (ht == 0){
         hometeam = "dealer";
         pitcher = "dealer";
@@ -399,41 +428,41 @@ function doHomeRunCheck(){
     if (playeracetotal == 21 && dealeracetotal == 21){
         outs++;
         homeruntie = true;
-        alert("Nice catch!" + pitcher);
+        notification.text("Nice catch!" + pitcher);
         document.getElementById("card4").src = randocard4;
         counttrue += 1;
-        playBall();
+        callplayBall();
     }
 
     else if (playeracetotal == 21 && pitcher == "dealer" && homeruntie == false){
         playerruns += 1;
-        alert("Home Run!" + batter);
+        notification.text("Home Run!" + batter);
         document.getElementById("card4").src = randocard4;
         counttrue += 1;
-        playBall();
+        callplayBall();
     }
 
     else if (playeracetotal == 21 && pitcher == "playerone" && homeruntie == false){
         outs++;
-        alert("Nice Catch!" + pitcher);
+        notification.text("Nice Catch!" + pitcher);
         document.getElementById("card4").src = randocard4;
         counttrue += 1;
-        playBall();
+        callplayBall();
     }
 
     else if (dealeracetotal == 21 && pitcher == "playerone" && homeruntie == false){
         dealerruns += 1;
-        alert("Home Run!" + batter);
+        notification.text("Home Run!" + batter);
         document.getElementById("card4").src = randocard4;
         counttrue += 1;
-        playBall();
+        callplayBall();
     }
 
     else if (dealeracetotal == 21 && pitcher == "dealer" && homeruntie == false){
         outs++;
-        alert("Nice Catch!" + pitcher);
+        notification.text("Nice Catch!" + pitcher);
         counttrue += 1;
-        playBall();
+        callplayBall();
     }
     if (counttrue > 0){
         outsLabel.text("Outs: " + outs);
@@ -490,7 +519,7 @@ function doHit(){
         doStand();
     }
     if (playerhandtotal > 21){
-        doWinLogic();
+        calldoWinLogic();
     }
 }
 
@@ -519,10 +548,19 @@ function revealDealerHand(){
         card4.src = randocard4;
         dealerhandtotalLabel.text(dealerhandtotal);
         dealeracehandLabel.text("(" + dealeracetotal + ")");
-        doWinLogic();
+        calldoWinLogic();
+        
   
 }
-    
+
+function calldoWinLogic(){
+    setTimeout(doWinLogic,2000);
+}
+
+function callplayBall(){
+    setTimeout(playBall, 4000);
+}
+
 function doWinLogic(){
     card4.src = randocard4;
 
@@ -556,24 +594,24 @@ function doWinLogic(){
     if (winningscore[0][0] == "d" && pitcher == "dealer"){
         outs++;
         outsLabel.text("Outs:" + outs);
-        alert("case1: outs should increase");
+        notification.text("case1: outs should increase");
     }
 
     else if (winningscore[0][0] == "d" && pitcher == "playerone"){
         dealerruns+= 1;
         dealerrunsLabel.text("Dealer Runs: " + dealerruns);
-        alert("case 2: dealer runs should increase");
+        notification.text("case 2: dealer runs should increase");
     }
 
     else if (winningscore[0][0] == "p" && pitcher == "playerone"){
         outs++;
         outsLabel.text("Outs: " + outs);
-        alert("case3: outs should increase");
+        notification.text("case3: outs should increase");
     }
     else if (winningscore[0][0] == "p" && pitcher == "dealer"){
         playerruns += 1;
         playerrunsLabel.text("Player Runs: " + playerruns);
-        alert("case4: player runs should increase");
+        notification.text("case4: player runs should increase");
     }
     playBall();
 }
